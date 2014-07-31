@@ -1,0 +1,7 @@
+
+#chart {
+	bottom: 52px;
+    left: 500px;
+    position: absolute;
+    z-index: 999999;
+}

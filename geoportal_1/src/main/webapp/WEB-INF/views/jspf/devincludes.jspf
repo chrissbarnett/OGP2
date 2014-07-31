@@ -6,9 +6,13 @@
 <link rel="stylesheet" href="resources/css/mapDiv.css" type="text/css" />
 <link rel="stylesheet" href="resources/css/localize.css"
 	type="text/css" />
+	<link rel="stylesheet" href="resources/css/pie.css"
+	type="text/css" />
 
 
 <!-- ogp javascript library files -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="resources/javascript/d3pie.min.js"></script>
 
 <script type="text/javascript" src="resources/javascript/lib/models/config.js"></script>
 <script type="text/javascript" src="resources/javascript/lib/utility.js"></script>
@@ -94,6 +98,8 @@
 <script type="text/javascript" src="resources/javascript/lib/solr.js"></script>
 <script type="text/javascript"
 	src="resources/javascript/lib/views/searchResultsTable.js"></script>
+	<script type="text/javascript"
+	src="resources/javascript/lib/pie.js"></script>
 
 
 <script type="text/javascript"

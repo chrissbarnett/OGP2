@@ -238,6 +238,38 @@ OpenGeoportal.Solr = function() {
 		return this.getServerName() + "?" + query;
 
 	};
+	
+	this.getFacetQuery = function(facetField){
+		var facetParams = this.getSearchParams();
+		facetParams.rows = 0;
+		facetParams.facet = true;
+		facetParams["facet.field"] = facetField;
+		facetParams["facet.minCount"] = 1;
+		facetParams["facet.limit"] = 20;
+		
+		var query = jQuery.param(facetParams, true);
+		return this.getServerName() + "?" + query;
+	};
+	
+	this.getURLWithFilter = function(filterField, filterValue){
+		var filter = this.createFilter(filterField, filterValue);
+		this.addFilter(filter);
+		return this.getURL();
+	};
+	
+	this.getURLWithoutFilter = function(filterField, filterValue){
+
+		for (var i = 0; i < this.filters.length; i++){
+			var filter = this.filters[i];
+			console.log(filter);
+			if (filter.column === filterField && filter.value === filterValue){
+				this.filters.splice(i, 1);
+				break;
+			}
+			
+		};
+		return this.getURL();	
+	};
 
 	/***************************************************************************
 	 * Keyword/text components

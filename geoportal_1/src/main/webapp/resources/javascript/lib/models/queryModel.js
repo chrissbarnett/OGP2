@@ -22,7 +22,7 @@ OpenGeoportal.Models.QueryTerms = Backbone.Model.extend({
 		dateFrom: null,
 		dateTo: null,
 		isoTopic: "",
-		facets: "",
+		facets: false,
 		sortBy: "score",
 		sortDir: "asc",
 		mapExtent: {minX: -180, maxX: 180, minY: -90, maxY: 90},
@@ -120,6 +120,10 @@ OpenGeoportal.Models.QueryTerms = Backbone.Model.extend({
 			solr = this.getBasicSearchQuery();
 		}
 
+		if( this.get("facets")){
+			this.handleFacets(solr);
+		}
+		
 		this.addToHistory(solr);
 		// console.log(solr.getURL());
 		return solr.getURL();
@@ -211,7 +215,12 @@ OpenGeoportal.Models.QueryTerms = Backbone.Model.extend({
 		return solr;
 	},
 	
-
+	handleFacets : function(solr){
+		var field = this.get("facetField");
+		var val = this.get("facetValue");
+		solr.addFilter(solr.createFilter(field, val));
+		//return solr;
+	},
 	/*******************************************************************
 	 * Callbacks
 	 ******************************************************************/
@@ -233,6 +242,7 @@ OpenGeoportal.Models.QueryTerms = Backbone.Model.extend({
 		}
 
 	},
+	
 	rerunLastSearch : function() {
 		var solr = this.get("history").pop();
 		if (solr != null)
